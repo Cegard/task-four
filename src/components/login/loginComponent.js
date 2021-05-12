@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Button, Label, Row } from 'reactstrap';
+import {Redirect} from 'react-router-dom';
 
 
 const fieldMinLength = (len) => (val) => (val) && (val.length >= len);
+const required = (val) => val && val.length;
+const validEmail = (val) => /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/i.test(val);
 
 
 class Login extends Component {
@@ -16,12 +19,15 @@ class Login extends Component {
   }
 
 
-  handleSubmit() {
-
+  handleSubmit(values) {
+    this.props.loginFunction(values);
   }
 
   
   render() {
+    
+    if (this.props.token)
+      return  <Redirect to="/home" />;
     
     return (
 
@@ -56,12 +62,12 @@ class Login extends Component {
                 className="form-control"
                 validators={{
                   required,
-                  minLength
+                  minLength: fieldMinLength(8),
                 }} />
             <Errors className="text-danger" model=".password" show="touched"
                 messages={{
                   required: "This field is required",
-                  minLength: fieldMinLength(8),
+                  minLength: "The password requires 8 characters or more"
                 }} />
           </Row>
           <Row className="row">
