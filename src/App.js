@@ -12,6 +12,7 @@ class App extends Component {
   
 
   render() {
+
     return (
       <Provider store={store}>
         <BrowserRouter>
@@ -23,5 +24,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;
