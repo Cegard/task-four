@@ -1,6 +1,6 @@
 import { ITEMS } from '../shared/items';
 
-export default {
+export const initialState = {
   items: ITEMS,
   loggedIn: {
     token: '',

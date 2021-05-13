@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Home from '../home/homeComponent';
 import Login from '../login/loginComponent';
 import { Router, Switch, Route, Redirect, withRouter, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { LOGIN_REQUEST, LOGGED_OUT } from '../../actions/actionTypes';
-import initialState from '../../reducers/initialState';
+import { initialState } from '../../reducers/initialState';
 
 
 const mapStateToProps = (state) => {
