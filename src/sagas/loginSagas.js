@@ -1,5 +1,5 @@
 import { sha256 } from 'js-sha256';
-import { call, cancel, fork, put, take } from 'redux-saga/effects';
+import { call, cancel, fork, put, take, all } from 'redux-saga/effects';
 
 
 export function fakeAuthorize (payload) {
@@ -18,8 +18,10 @@ export function fakeAuthorize (payload) {
 
 export function* authorize(payload) {
   const token = yield call(fakeAuthorize, payload.payload)
-  yield put({type: 'LOGIN_SUCCESS'})
-  yield put({type: 'SAVE_TOKEN', token});
+  yield all([
+    put({type: 'LOGIN_SUCCESS'}),
+    put({type: 'SAVE_TOKEN', token})
+  ]);
 }
 
 

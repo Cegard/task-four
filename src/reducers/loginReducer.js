@@ -2,7 +2,7 @@ import actionTypes from '../actions/actionTypes';
 import { LOGGED_IN, LOGGED_OUT } from './../statusTypes';
 import initialState from './initialState';
 
-export default function userRole(state = initialState, action) {
+export const userRole = (state = initialState, action) => {
   let newState;
 
   switch (action.type) {
