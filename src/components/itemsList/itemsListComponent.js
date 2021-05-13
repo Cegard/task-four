@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 
 
@@ -19,6 +20,10 @@ function RenderListItem({ item }) {
 
 
 const ItemsList = (props) => {
+  
+  if (!props.token) {
+    return <Redirect to = "/login" />
+  }
   
   const menu = props.items.map((item) => {
     return (

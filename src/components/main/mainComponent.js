@@ -35,6 +35,7 @@ const Main = (props) => {
       return (
         <ItemDetail
           item={props.items.filter((item) => item.id === parseInt(match.params.itemId))[0]}
+          token={props.loggedIn.token}
         />
       );
     };
@@ -51,7 +52,7 @@ const Main = (props) => {
                   history = {history}
               />}
             />
-            <Route exact path="/list" component={() => <ItemsList items={props.items} />} />
+            <Route exact path="/list" component={() => <ItemsList items={props.items} token={props.loggedIn.token} />} />
             <Route path="/list/:itemId" component={ItemWithId} />
             <Redirect to="/home" />
           </Switch>

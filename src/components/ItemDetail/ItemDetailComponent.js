@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import { Card, CardImg, CardText, CardBody,
          CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
@@ -17,33 +18,37 @@ function RenderItem({ item }) {
 }
 
 const ItemDetail = (props) => {
+    
+  if (!props.token) {
+    return <Redirect to = "/login" />
+  }
   
   let listElement = (
     <div></div>
   );
-  console.log(props.item)
+  
   if (props.item != null) {
-      listElement = (
-        <div className="container">
-          <div className='row'>
-            <Breadcrumb>
-              <BreadcrumbItem>
-                <Link to="/list"> list </Link>
-              </BreadcrumbItem>
-              <BreadcrumbItem active> {props.item.name} </BreadcrumbItem>
-            </Breadcrumb>
-            <div className="col-12">
-              <h3> {props.item.name} </h3>
-              <hr />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12 col-md-5 m-1">
-              <RenderItem item={props.item} />
-            </div>
+    listElement = (
+      <div className="container">
+        <div className='row'>
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <Link to="/list"> list </Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem active> {props.item.name} </BreadcrumbItem>
+          </Breadcrumb>
+          <div className="col-12">
+            <h3> {props.item.name} </h3>
+            <hr />
           </div>
         </div>
-      );
+        <div className="row">
+          <div className="col-12 col-md-5 m-1">
+            <RenderItem item={props.item} />
+          </div>
+        </div>
+      </div>
+    );
   }
   
   return listElement;
