@@ -1,6 +1,6 @@
-import actionTypes from '../actions/actionTypes';
+import { actionTypes } from '../actions/actionTypes';
 import { LOGGED_IN, LOGGED_OUT } from './../statusTypes';
-import initialState from './initialState';
+import { initialState } from './initialState';
 
 export const userRole = (state = initialState, action) => {
   let newState;

@@ -58,7 +58,7 @@ class Login extends Component {
           </Row>
 
           <Row className='row'>
-            <Control.text model=".email" type="email" id="email" name="email"
+            <Control model=".email" type="email" id="email" name="email"
                 className="form-control"
                 validators={{
                   required,

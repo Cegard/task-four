@@ -3,7 +3,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGGED_OUT = 'LOGGED_OUT';
 export const SAVE_TOKEN = 'SAVE_TOKEN';
 
-export default {
+export const actionTypes = {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGGED_OUT,

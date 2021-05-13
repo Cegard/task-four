@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Home (props) {
+function ItemsList (props) {
   
   return(
     <div className="container">
@@ -20,4 +20,4 @@ function Home (props) {
   );
 }
 
-export default Home;
+export default ItemsList;
