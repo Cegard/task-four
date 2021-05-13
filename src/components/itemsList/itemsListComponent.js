@@ -40,7 +40,7 @@ const ItemsList = (props) => {
           <BreadcrumbItem>
             <Link to="/home"> Home </Link>
           </BreadcrumbItem>
-          <BreadcrumbItem active> List </BreadcrumbItem>
+          <BreadcrumbItem active> Menu </BreadcrumbItem>
         </Breadcrumb>
         <div className="col-12">
           <h3> List </h3>

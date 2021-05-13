@@ -7,6 +7,7 @@ import Home from '../home/homeComponent';
 import Login from '../login/loginComponent';
 import ItemsList from '../itemsList/itemsListComponent';
 import ItemDetail from '../ItemDetail/ItemDetailComponent'
+import Header from '../headerComponent/headerComponent';
 
 
 const mapStateToProps = (state) => {
@@ -43,6 +44,7 @@ const Main = (props) => {
 
     return (
       <div>
+        <Header token={props.loggedIn.token} />
         <Router history={history} token = {props.loggedIn.token}>
           <Switch>
             <Route path="/home" component={() => <Home token={props.loggedIn.token} />} />
