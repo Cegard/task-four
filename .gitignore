@@ -2,6 +2,7 @@
 
 # config
 jsconfig.json
+.vscode
 
 # dependencies
 /node_modules

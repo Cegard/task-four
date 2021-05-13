@@ -43,7 +43,8 @@ class Login extends Component {
 
   
   render() {
-    if (this.props.loggedStatus.token !== ""){
+    
+    if (this.props.loggedStatus.token){
       return <Redirect to = "/home" />
     }
 
