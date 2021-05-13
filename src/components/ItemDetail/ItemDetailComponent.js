@@ -37,6 +37,7 @@ class ItemDetail extends Component {
     if (!this.isSubmitted){
       this.props.item.submitted = true;
       this.setState({isSubmitted: true});
+      console.log("Submitted!");
     }
   }
 
@@ -51,7 +52,7 @@ class ItemDetail extends Component {
       <div></div>
     );
 
-    let buttonLabel = this.state.isSubmitted ? 'Already submitted' : 'Submit';
+    let buttonLabel = this.state.isSubmitted ? 'Already ordered' : 'Order this';
     
     if (this.props.item) {
       listElement = (

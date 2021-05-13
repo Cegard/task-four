@@ -4,16 +4,14 @@ function Home (props) {
   
   return(
     <div className="container">
-      
-      <div className="row align-items-start">
-        <div className="col-12 col-md m-1">
-            
+      <div className="row">
+        <div className="d-flex justify-content-center text-center">
+          <h1> Welcome! </h1>
         </div>
-        <div className="col-12 col-md m-1">
-            
-        </div>
-        <div className="col-12 col-md m-1">
-            
+      </div>
+      <div className="row">
+        <div className="d-flex justify-content-center text-center">
+          <img src="assets/images/home.jpg" height="920" width="1024" alt="La Casa restaurant"/>
         </div>
       </div>
     </div>
