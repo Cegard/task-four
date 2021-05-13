@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Redirect } from 'react-router';
 import { Button, Label, Row } from 'reactstrap';
-import {Redirect} from 'react-router-dom';
 
 
 const fieldMinLength = (len) => (val) => (val) && (val.length >= len);
 const required = (val) => val && val.length;
 const validEmail = (val) => /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/i.test(val);
-
+const timeAfterLogin = 1000;
 
 class Login extends Component {
 
@@ -16,19 +16,37 @@ class Login extends Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkLogingresult = this.checkLogingresult.bind(this);
+    this.state = {
+      isLoginButtonEnabled: true
+    };
+  }
+
+
+  checkLogingresult() {
+
+    setTimeout( () => {
+      if (this.props.loggedStatus.token){
+        this.props.history.push('/home');
+      } else {
+        this.setState({isLoginButtonEnabled: true})
+      }
+    }, timeAfterLogin);
   }
 
 
   handleSubmit(values) {
+    this.setState({isLoginButtonEnabled: false})
     this.props.loginFunction(values);
+    this.checkLogingresult();
   }
 
   
   render() {
-    
-    if (this.props.token)
-      return  <Redirect to="/home" />;
-    
+    if (this.props.loggedStatus.token !== ""){
+      return <Redirect to = "/home" />
+    }
+
     return (
 
       <div className="container">
@@ -71,7 +89,7 @@ class Login extends Component {
                 }} />
           </Row>
           <Row className="row">
-            <Button type="submit" color="primary"> Submit </Button>
+            <Button type="submit" color="primary" disabled={!this.state.isLoginButtonEnabled} > Submit </Button>
           </Row>
         </LocalForm>
       </div>

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import Home from '../home/homeComponent';
 import Login from '../login/loginComponent';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { Router, Switch, Route, Redirect, withRouter, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { LOGIN_REQUEST, LOGGED_OUT } from '../../actions/actionTypes';
+import initialState from '../../reducers/initialState';
 
 
-const mapStateToProps = state => {
-  
+const mapStateToProps = (state) => {
   return {
-    items: state.items,
-    loggedIn: state.loggedIn || {status: LOGGED_OUT, token: ""}
+    items: state.userRole.items || initialState.items,
+    loggedIn: state.userRole.loggedIn || initialState.loggedIn
   };
 }
 
@@ -24,24 +24,25 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-class Main extends Component {
-
-  componentDidMount() {
-    //loadItems
-  }
-  
-  render() {
+const Main = (props) => {
+    const history = useHistory();
     
     return (
       <div>
-        <Switch>
-          <Route path="/home" component={Home} />
-          <Route path="/login" component={() => <Login loginFunction = {this.props.login} token = {this.props.loggedIn.token} />} />
-          <Redirect to="/home" />
-        </Switch>
+        <Router history={history} token = {props.loggedIn.token}>
+          <Switch>
+            <Route path="/home" component={() => <Home token={props.loggedIn.token} />} />
+            <Route
+              path="/login" 
+              component={() => <Login loginFunction = {props.login} loggedStatus = {props.loggedIn}
+                  history = {history}
+              />} 
+            />
+            <Redirect to="/home" />
+          </Switch>
+        </Router>
       </div>
     );
-  }
 }
 
 

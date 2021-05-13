@@ -1,16 +1,19 @@
 import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
 import { reducer } from '../reducers/reducer';
-import { loginFlow, logActions } from '../sagas/loginSagas'
+import { rootSaga } from '../sagas/rootSaga';
+import createSagaMiddleware from 'redux-saga';
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware()
 
 
 export const ConfigureStore = () => {
-  const store = createStore(reducer, applyMiddleware(sagaMiddleware));
 
-  sagaMiddleware.run(loginFlow);
-  sagaMiddleware.run(logActions);
+  const store = createStore(
+    reducer,
+    applyMiddleware(sagaMiddleware)
+  );
+
+  sagaMiddleware.run(rootSaga);
 
   return store;
 };
